@@ -13,16 +13,17 @@ import java.io.PrintWriter;
 
 public class GroupFileStorage {
 
+	CSVStringConverter convert = new CSVStringConverter();
+
 	public void saveGroupToCSV(Group group) {
 
 		File fileGroupName = new File("D:\\Группы студентов\\" + group.getGroupName() + ".csv");
 
 		try (PrintWriter pw = new PrintWriter(fileGroupName)) {
-			CSVStringConverter convertToString = new CSVStringConverter();
 			for (int i = 0; i < group.getStudents().length; i++) {
 				Student student = group.getStudents()[i];
 				if (student != null) {
-					pw.println(convertToString.toStringRepresentation(student));
+					pw.println(convert.toStringRepresentation(student));
 				}
 			}
 			System.out.println("Группа сохранена в файл: " + group.getGroupName() + ".csv");
@@ -32,7 +33,7 @@ public class GroupFileStorage {
 	}
 
 	public Group loadGroupFromCSV(File file) throws IOException {
-		
+
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String tempString = "";
 			Group result = new Group(file.getName());
@@ -42,8 +43,7 @@ public class GroupFileStorage {
 					break;
 				}
 				try {
-					CSVStringConverter convertFromString = new CSVStringConverter();
-					result.addStudent(convertFromString.fromStringRepresentation(tempString));
+					result.addStudent(convert.fromStringRepresentation(tempString));
 				} catch (GroupOverflowException e) {
 					e.printStackTrace();
 				}
