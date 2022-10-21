@@ -4,10 +4,14 @@ public class CSVStringConverter implements StringConvertor {
 
 	@Override
 	public String toStringRepresentation(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String result = student.getLastName() + ";" + student.getName() + ";" + student.getGender() + ";"
+				+ student.getId() + ";" + student.getGroupName();
+
+		return result;
 	}
 
+	@Override
 	public Student fromStringRepresentation(String str) {
 
 		String[] arrStudent = str.split(";");
