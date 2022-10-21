@@ -22,7 +22,7 @@ public class Main {
 		Student student7 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
 //		Student student8 = new Student("Анастасия", "Сорокина", Gender.Female, 916, "Основная");
 //		Student student9 = new Student("Зоя", "Гришина", Gender.Female, 257, "Основная");
-		
+
 //		Student student15 = new Student("Тамара", "Орлова", Gender.Female, 10, "Дополнительная");
 //		Student student11 = new Student("Юрий", "Гришин", Gender.Male, 11, "Основная");
 
@@ -113,5 +113,19 @@ public class Main {
 		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
 		System.out.println("");
 		System.out.println(tempGroup);
+
+//		// Вычитка и возврат другой группы из файла
+//		
+//		groupToLoad = new File("D:\\Группы студентов\\Дополнительная.csv");
+//		try {
+//			tempGroup = gfs.loadGroupFromCSV(groupToLoad);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("");
+//		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+//		System.out.println("");
+//		System.out.println(tempGroup);
 	}
 }
+

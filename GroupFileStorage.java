@@ -43,10 +43,6 @@ public class GroupFileStorage {
 				if (tempString == null) {
 					break;
 				}
-				if (result.getStudents()[9] != null) {
-					System.out.println("Группа переполнена!");
-					break;
-				}
 				try {
 					result.addStudent(convert.fromStringRepresentation(tempString));
 				} catch (GroupOverflowException e) {
