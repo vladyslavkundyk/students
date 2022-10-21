@@ -114,12 +114,14 @@ public class Main {
 		} catch (IOException b) {
 			b.printStackTrace();
 		}
+		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+		System.out.println();
+		System.out.println(tempGroup);
 
 //		// Вычитка и возврат другой группы из файла
 //
 //		groupToLoad = "Дополнительная";
 //		groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
-//		tempGroup = new Group("");
 //		try {
 //			tempGroup = gfs.loadGroupFromCSV(groupsDirectory);
 //		} catch (FileNotFoundException e) {
@@ -127,9 +129,8 @@ public class Main {
 //		} catch (IOException b) {
 //			b.printStackTrace();
 //		}
-
-		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
-		System.out.println();
-		System.out.println(tempGroup);
+//		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+//		System.out.println();
+//		System.out.println(tempGroup);
 	}
 }
