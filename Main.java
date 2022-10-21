@@ -2,6 +2,7 @@ package students;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 
 //import java.util.Random;
 //import java.util.Scanner;
@@ -97,34 +98,38 @@ public class Main {
 		File searchGroup = gfs.findFileByGroupName(groupToSearch, groupsFolder);
 		if (searchGroup != null) {
 			System.out.println("Найден файл группы: " + searchGroup.getName());
+			System.out.println();
 		} else {
 			System.out.println("Группы " + groupToSearch + " не существует!");
 		}
 
 		// Вычитка и возврат группы из файла
-		File groupToLoad = new File("D:\\Группы студентов\\Основная.csv");
+		String groupToLoad = "Основная";
+		File groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
 		Group tempGroup = new Group("");
 		try {
-			tempGroup = gfs.loadGroupFromCSV(groupToLoad);
-		} catch (IOException e) {
-			e.printStackTrace();
+			tempGroup = gfs.loadGroupFromCSV(groupsDirectory);
+		} catch (FileNotFoundException e) {
+			System.out.println("Файла с группой " + groupToLoad + ".csv не существует!");
+		} catch (IOException b) {
+			b.printStackTrace();
 		}
-		System.out.println("");
-		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
-		System.out.println("");
-		System.out.println(tempGroup);
 
 //		// Вычитка и возврат другой группы из файла
-//		
-//		groupToLoad = new File("D:\\Группы студентов\\Дополнительная.csv");
+//
+//		groupToLoad = "Дополнительная";
+//		groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
+//		tempGroup = new Group("");
 //		try {
-//			tempGroup = gfs.loadGroupFromCSV(groupToLoad);
-//		} catch (IOException e) {
-//			e.printStackTrace();
+//			tempGroup = gfs.loadGroupFromCSV(groupsDirectory);
+//		} catch (FileNotFoundException e) {
+//			System.out.println("Файла с группой " + groupToLoad + ".csv не существует!");
+//		} catch (IOException b) {
+//			b.printStackTrace();
 //		}
-//		System.out.println("");
-//		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
-//		System.out.println("");
-//		System.out.println(tempGroup);
+
+		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+		System.out.println();
+		System.out.println(tempGroup);
 	}
 }
