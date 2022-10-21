@@ -65,14 +65,4 @@ public class GroupFileStorage {
 		}
 		return null;
 	}
-
-//	public static Student studentFromString(String text) {
-//
-//		String[] arr = text.split(";");
-//		Student student = new Student(arr[0], arr[1], Gender.valueOf(arr[2]), Integer.valueOf(arr[3]), arr[4]);
-//
-//		return student;
-//
-//	}
-
 }
