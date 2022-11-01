@@ -81,23 +81,6 @@ public class Group {
 		Arrays.sort(students, Comparator.nullsFirst(new StudentsLastNameComparator()));
 	}
 
-////	(ПОД ВОПРОСОМ) - СПРОСИТЬ У ЧЕЛА
-//	
-//	public void generateStudentID(int studentID) {
-//		Random rannum = new Random();
-//		for (int i = 0; i < students.length; i++) {
-//			if (students[i] != null) {
-//				studentID = (rannum.nextInt(200, 500));
-//				if (students[i].getId() == studentID) {
-//					studentID = (rannum.nextInt(200, 500));
-//					students[i].setId(studentID);
-//				}
-//			}
-//			System.out.println("");
-//			System.out.println("Номер зачётки студента " + students[i].getId() + " сгенерирован!");
-//		}
-//	}
-
 	@Override
 	// Метод вывода группы студентов
 	public String toString() {
