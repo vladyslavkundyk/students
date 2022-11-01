@@ -27,6 +27,8 @@ public class Main {
 //		Student student15 = new Student("Тамара", "Орлова", Gender.Female, 10, "Дополнительная");
 //		Student student11 = new Student("Юрий", "Гришин", Gender.Male, 11, "Основная");
 
+		Student student20 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
+
 		Group group1 = new Group("Основная");
 
 		try {
@@ -86,35 +88,35 @@ public class Main {
 //		System.out.println("Сортировка студентов из группы " + group1.getGroupName() + ":");
 //		System.out.println();
 //		System.out.println(group1);
-
-		// Запись группы в CSV файл
-		GroupFileStorage gfs = new GroupFileStorage();
-		gfs.saveGroupToCSV(group1);
-		System.out.println();
-
-		// Поиск файла в рабочем каталоге
-		File groupsFolder = new File("D:\\Группы студентов");
-		String groupToSearch = ("Основная");
-		File searchGroup = gfs.findFileByGroupName(groupToSearch, groupsFolder);
-		if (searchGroup != null) {
-			System.out.println("Найден файл группы: " + searchGroup.getName());
-			System.out.println();
-		} else {
-			System.out.println("Группы " + groupToSearch + " не существует!");
-		}
-
-		// Вычитка и возврат группы из файла
-		String groupToLoad = "Основная";
-		File groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
-		Group tempGroup = new Group("");
-		try {
-			tempGroup = gfs.loadGroupFromCSV(groupsDirectory);
-		} catch (FileNotFoundException e) {
-			System.out.println("Файла с группой " + groupToLoad + ".csv не существует!");
-		} catch (IOException b) {
-			b.printStackTrace();
-		}
-		
+//
+//		// Запись группы в CSV файл
+//		GroupFileStorage gfs = new GroupFileStorage();
+//		gfs.saveGroupToCSV(group1);
+//		System.out.println();
+//
+//		// Поиск файла в рабочем каталоге
+//		File groupsFolder = new File("D:\\Группы студентов");
+//		String groupToSearch = ("Основная");
+//		File searchGroup = gfs.findFileByGroupName(groupToSearch, groupsFolder);
+//		if (searchGroup != null) {
+//			System.out.println("Найден файл группы: " + searchGroup.getName());
+//			System.out.println();
+//		} else {
+//			System.out.println("Группы " + groupToSearch + " не существует!");
+//		}
+//
+//		// Вычитка и возврат группы из файла
+//		String groupToLoad = "Основная";
+//		File groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
+//		Group tempGroup = new Group("");
+//		try {
+//			tempGroup = gfs.loadGroupFromCSV(groupsDirectory);
+//		} catch (FileNotFoundException e) {
+//			System.out.println("Файла с группой " + groupToLoad + ".csv не существует!");
+//		} catch (IOException b) {
+//			b.printStackTrace();
+//		}
+//
 //		// Вычитка и возврат другой группы из файла
 //		groupToLoad = "Дополнительная";
 //		groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
@@ -125,9 +127,44 @@ public class Main {
 //		} catch (IOException b) {
 //			b.printStackTrace();
 //		}
-		
-		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+//
+//		System.out.println("Студенты из файла группы " + tempGroup.getGroupName() + ":");
+//		System.out.println();
+//		System.out.println(tempGroup);
+
+		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
-		System.out.println(tempGroup);
+
+		// Задание 1:
+		System.out.println("Студент 1 equals студент 2 = " + student2.equals(student1));
+		System.out.println("Студент 2 equals студент 3 = " + student2.equals(student3));
+		System.out.println("Студент 2 equals студент 2 = " + student2.equals(student2));
+		System.out.println();
+
+		System.out.println(student1.getName() + " " + student1.getLastName() + " - hashCode = " + student1.hashCode());
+		System.out.println(student2.getName() + " " + student2.getLastName() + " - hashCode = " + student2.hashCode());
+		System.out.println(student3.getName() + " " + student3.getLastName() + " - hashCode = " + student3.hashCode());
+		System.out.println();
+
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println();
+
+		// Задание 2:
+		group1.checkStudentsSimilarity();
+//		System.out.println(group1.checkStudentsSimilarity());
+		System.out.println();
+
+		try {
+			group1.addStudent(student20);
+		} catch (GroupOverflowException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		group1.checkStudentsSimilarity();
+//		System.out.println(group1.checkStudentsSimilarity());
+		System.out.println();
+
+		System.out.println("+---+---+---+---+---+---+---+");
 	}
 }

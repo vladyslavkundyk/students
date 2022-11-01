@@ -2,6 +2,7 @@ package students;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Random;
 
 public class Group {
@@ -118,5 +119,44 @@ public class Group {
 		}
 
 		return listOfStudents;
+	}
+
+	// Метод для проверки факта отсутствия эквивалентных студентов в группе
+	public boolean checkStudentsSimilarity() {
+		for (int i = 0; i < students.length; i++) {
+			for (int j = i + 1; j < students.length; j++) {
+				if (students[i] != null && students[j] != null) {
+					if (students[i].equals(students[j])) {
+						System.out.println(
+								"Похожий студент найден - " + students[i].getName() + " " + students[i].getLastName());
+						return true;
+
+					}
+				}
+			}
+		}
+		System.out.println("Похожий студент не найден!");
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(students);
+		result = prime * result + Objects.hash(groupName);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Group other = (Group) obj;
+		return Objects.equals(groupName, other.groupName) && Arrays.equals(students, other.students);
 	}
 }

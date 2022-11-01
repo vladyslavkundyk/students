@@ -36,19 +36,19 @@ public class GroupFileStorage {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String tempString = "";
-			Group result = new Group(file.getName());
+			Group tempGroup = new Group(file.getName());
 			for (;;) {
 				tempString = br.readLine();
 				if (tempString == null) {
 					break;
 				}
 				try {
-					result.addStudent(convert.fromStringRepresentation(tempString));
+					tempGroup.addStudent(convert.fromStringRepresentation(tempString));
 				} catch (GroupOverflowException e) {
 					e.printStackTrace();
 				}
 			}
-			return result;
+			return tempGroup;
 		}
 	}
 
