@@ -111,14 +111,14 @@ public class Group {
 				if (students[i] != null && students[j] != null) {
 					if (students[i].equals(students[j])) {
 						System.out.println(
-								"Похожий студент найден - " + students[i].getName() + " " + students[i].getLastName());
+								"Похожий студент найден - " + students[i].getName() + " " + students[i].getLastName() + " 🤔");
 						return true;
 
 					}
 				}
 			}
 		}
-		System.out.println("Похожий студент не найден!");
+		System.out.println("Похожий студент не найден 👍");
 		return false;
 	}
 
