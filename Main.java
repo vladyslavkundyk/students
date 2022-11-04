@@ -1,12 +1,5 @@
 package students;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-
-//import java.util.Random;
-//import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -21,11 +14,11 @@ public class Main {
 		Student student5 = new Student("Богдан", "Митрофанов", Gender.Male, 746, "Основная");
 		Student student6 = new Student("Андрей", "Антонов", Gender.Male, 315, "Основная");
 		Student student7 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
-//		Student student8 = new Student("Анастасия", "Сорокина", Gender.Female, 916, "Основная");
-//		Student student9 = new Student("Зоя", "Гришина", Gender.Female, 257, "Основная");
+		Student student8 = new Student("Анастасия", "Сорокина", Gender.Female, 916, "Основная");
+		Student student9 = new Student("Зоя", "Гришина", Gender.Female, 257, "Основная");
 
 //		Student student15 = new Student("Тамара", "Орлова", Gender.Female, 10, "Дополнительная");
-//		Student student11 = new Student("Юрий", "Гришин", Gender.Male, 11, "Основная");
+		Student student11 = new Student("Юрий", "Гришин", Gender.Male, 11, "Основная");
 
 		Student student20 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
 
@@ -39,8 +32,8 @@ public class Main {
 			group1.addStudent(student5);
 			group1.addStudent(student6);
 			group1.addStudent(student7);
-//			group1.addStudent(student8);
-//			group1.addStudent(student9);
+			group1.addStudent(student8);
+			group1.addStudent(student9);
 
 //			group2.addStudent(student15);
 //			group1.addStudent(student11);
@@ -51,18 +44,23 @@ public class Main {
 			System.out.println();
 		}
 
-//		try {
-//			System.out.println(group1.searchStudentByLastName("Леонова"));
-//			System.out.println();
-////			System.out.println(group1.searchStudentByLastName(student11.getLastName())); // Не существует
-//
-//		} catch (StudentNotFoundException e) {
-//			System.out.println(e.getMessage());
-//		}
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println();
 
-//		group1.removeStudentByID(746);
-//		group1.removeStudentByID(258);
-//		group1.removeStudentByID(491); // Не существует
+		try {
+			System.out.println(group1.searchStudentByLastName("Леонова"));
+			System.out.println(group1.searchStudentByLastName(student11.getLastName())); // Не существует
+			System.out.println();
+
+		} catch (StudentNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println();
+
+		group1.removeStudentById(746);
+		group1.removeStudentById(491); // Не существует
 
 		// (ВНИЗУ) sortStudentsByLastName, создание студента
 
@@ -72,27 +70,26 @@ public class Main {
 //		Student student10 = new CreateStudent().newStudent();
 //		CreateStudent.addStudentToGroup(student10, group1);
 
-//		int studentID = (0);
-//		group1.generateStudentID(studentID);
-//		student10.setId(studentID);
-
 //		System.out.println();
 //		System.out.println("Информация о созданном студенте:");
 //		System.out.println();
 //		System.out.println(student10);
 
-//		System.out.println();
-//		System.out.println("Сортировка всех студентов по фамилии,\nсписок студентов:");
-//
-//		group1.sortStudentsByLastName();
-//		System.out.println("Сортировка студентов из группы " + group1.getGroupName() + ":");
-//		System.out.println();
-//		System.out.println(group1);
-//
-//		// Запись группы в CSV файл
-//		GroupFileStorage gfs = new GroupFileStorage();
-//		gfs.saveGroupToCSV(group1);
-//		System.out.println();
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println();
+
+		group1.sortStudentsByLastName();
+		System.out.println("Группа студентов " + group1.getGroupName() + " отсортирована!");
+		System.out.println();
+		System.out.println(group1);
+
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println();
+
+		// Запись группы в CSV файл
+		GroupFileStorage gfs = new GroupFileStorage();
+		gfs.saveGroupToCSV(group1);
+		System.out.println();
 //
 //		// Поиск файла в рабочем каталоге
 //		File groupsFolder = new File("D:\\Группы студентов");
@@ -135,7 +132,6 @@ public class Main {
 		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
 
-		// Задание 1:
 		System.out.println("Студент 1 equals студент 2 = " + student2.equals(student1));
 		System.out.println("Студент 2 equals студент 3 = " + student2.equals(student3));
 		System.out.println("Студент 2 equals студент 2 = " + student2.equals(student2));
@@ -149,7 +145,6 @@ public class Main {
 		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
 
-		// Задание 2:
 		group1.checkStudentsSimilarity();
 //		System.out.println(group1.checkStudentsSimilarity());
 		System.out.println();

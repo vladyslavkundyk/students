@@ -31,8 +31,8 @@ public class Student extends Human {
 
 	@Override
 	public String toString() {
-		return gender.getFilePermissions() + getName() + " " + getLastName() + ",\nномер зачетки " + id + ",\nгруппа "
-				+ groupName + " :)";
+		return "\n" + gender.getFilePermissions() + getName() + " " + getLastName() + ",\nномер зачетки " + id
+				+ ",\nгруппа " + groupName + "\n";
 	}
 
 	@Override
@@ -54,5 +54,4 @@ public class Student extends Human {
 		Student other = (Student) obj;
 		return Objects.equals(groupName, other.groupName) && id == other.id;
 	}
-
 }

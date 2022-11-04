@@ -31,18 +31,6 @@ public class CreateStudent {
 			System.out.println("");
 		}
 
-//		(ПОД ВОПРОСОМ) - СПРОСИТЬ У ЧЕЛА
-//		
-//		int studentID = (rannum.nextInt(257, 259));
-//		generateStudentID(studentID);
-//		student.setId(studentID);
-//		
-//      КОРОЧЕ Я ДОЛБАЕБ, надо сначала чтобы студент в Main через addStudentToGroup добавился в группу а потом уже на основе других участников группы подбирать уникальный номер зачётки roflanEbalo
-//      Какого-то хуя метод в Group не возвращает сгенерированное число в Main int studentID
-//      Через void тоже хуйня, надо всё-таки спрашивать
-
-//		student.setId(0);
-
 		student.setId(rannum.nextInt(200, 500));
 		System.out.println("Номер зачётки студента " + student.getId() + " сгенерирован!");
 		System.out.println("");

@@ -1,19 +1,31 @@
 package students;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Objects;
-import java.util.Random;
+import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Group {
 
 	private String groupName;
-	private Student[] students;
+//	private Student[] students;
+	private List<Student> students = new ArrayList<>(10);
+
+	public Group() {
+	}
 
 	public Group(String groupName) {
 		super();
-		students = new Student[10];
+//		students = new Student[10];
 		this.groupName = groupName;
+	}
+
+	public Group(String groupName, List<Student> students) {
+		this.groupName = groupName;
+		this.students = students;
 	}
 
 	public String getGroupName() {
@@ -24,111 +36,184 @@ public class Group {
 		this.groupName = groupName;
 	}
 
-	public Student[] getStudents() {
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	// Метод добавления студента в группу. В случае добавления 11 студента должно
-	// быть возбужденно пользовательское исключение
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	// OLD Метод добавления студента в группу. В случае добавления 11 студента
+	// должно быть возбужденно пользовательское исключение:
+	
+//	public void addStudent(Student student) throws GroupOverflowException {
+//
+//		for (int i = 0; i < students.length; i++) {
+//			if (students[i] == null) {
+//				students[i] = student;
+////				System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
+////						+ " добавлен в группу " + student.getGroupName() + "!");
+//				return;
+//			}
+//		}
+
+	// NEW Метод добавления студента в группу. В случае добавления 11 студента
+	// должно быть возбужденно пользовательское исключение:
+	
 	public void addStudent(Student student) throws GroupOverflowException {
 
-		for (int i = 0; i < students.length; i++) {
-			if (students[i] == null) {
-				students[i] = student;
-//				System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
-//						+ " добавлен в группу " + student.getGroupName() + "!");
-				return;
-			}
+		if (students.size() == 10) {
+			throw new GroupOverflowException("Current group is full!");
+		} else {
+			student.setGroupName(groupName);
+			students.add(student);
 		}
-
-		throw new GroupOverflowException(student.gender.getFilePermissions() + student.getName() + " "
-				+ student.getLastName() + " не добавлен,\nгруппа " + student.getGroupName() + " переполнена :(");
 	}
 
-	// Метод поиска студента в группе. Если студент не найден должно быть
-	// возбужденно пользовательское исключение
+	// OLD Метод поиска студента в группе. Если студент не найден должно быть
+	// возбужденно пользовательское исключение:
+	
+//	public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
+//
+//		for (int j = 0; j < students.length; j++) {
+//			if (students[j] != null) {
+//				if (students[j].getLastName() == lastName) {
+//					return students[j];
+//				}
+//			}
+//		}
+//		throw new StudentNotFoundException("Студент не найден,\nили он ещё не добавлен в группу :(");
+//	}
+
+	// NEW Метод поиска студента в группе. Если студент не найден должно быть
+	// возбужденно пользовательское исключение:
+	
 	public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
+		Student foundStudent = null;
 
-		for (int j = 0; j < students.length; j++) {
-			if (students[j] != null) {
-				if (students[j].getLastName() == lastName) {
-					return students[j];
-				}
+		for (Student student : students) {
+			if (student.getLastName().equals(lastName)) {
+				foundStudent = student;
 			}
 		}
-		throw new StudentNotFoundException("Студент не найден,\nили он ещё не добавлен в группу :(");
+		if (foundStudent == null) {
+			throw new StudentNotFoundException(
+					"Студент по фамилии " + lastName + " не найден,\nили он ещё не добавлен в группу :(\n");
+		}
+		System.out.println("Студент по фамилии найден! Это:");
+		return foundStudent;
 	}
 
-	// Метод удаления студента по номеру зачетки, вернуть true если такой студент
-	// был и он был удален и false в противном случае
-	public boolean removeStudentByID(int id) {
+	// OLD Метод удаления студента по номеру зачетки, вернуть true если такой
+	// студент был и он был удален и false в противном случае:
+	
+//	public boolean removeStudentById(int id) {
+//
+//		for (int k = 0; k < students.length; k++) {
+//			if (students[k] != null) {
+//				if (students[k].getId() == id) {
+//					students[k] = null;
+//					System.out.println("Студент по номеру зачетки " + id + " удалён!");
+//					return true;
+//				}
+//			}
+//		}
+//		System.out.println("Студент по номеру зачетки " + id + " не найден :(");
+//		return false;
+//	}
 
-		for (int k = 0; k < students.length; k++) {
-			if (students[k] != null) {
-				if (students[k].getId() == id) {
-					students[k] = null;
-					System.out.println("Студент по номеру зачетки " + id + " удалён!");
-					return true;
-				}
+	// NEW Метод удаления студента по номеру зачетки, вернуть true если такой
+	// студент был и он был удален и false в противном случае:
+	
+	public boolean removeStudentById(int id) {
+
+		for (Student student : students) {
+			if (student.getId() == id) {
+				System.out.println("Студент по номеру зачетки " + id + " удалён!");
+				students.remove(student);
+				return true;
 			}
 		}
-		System.out.println("Студент по номеру зачетки " + id + " не найден :(");
+		System.out.println("Студент по номеру зачетки " + id + " не найден :(\n");
 		return false;
 	}
 
-	// Метод сортировки массива студентов по фамилии
+	// OLD Метод сортировки массива студентов по фамилии:
+
+//	public void sortStudentsByLastName() {
+//		Arrays.sort(students, Comparator.nullsFirst(new StudentsLastNameComparator()));
+//	}
+
+	// NEW Метод сортировки массива студентов по фамилии:
+	
 	public void sortStudentsByLastName() {
-		Arrays.sort(students, Comparator.nullsFirst(new StudentsLastNameComparator()));
+		Collections.sort(students, Comparator.comparing(Human::getLastName));
 	}
 
-	@Override
-	// Метод вывода группы студентов
-	public String toString() {
-		String listOfStudents = "";
-		String[] arrayOfStudents = new String[10];
+	// OLD Метод вывода группы студентов:
+	
+//	@Override	
+//	public String toString() {
+//		String listOfStudents = "";
+//		String[] arrayOfStudents = new String[10];
+//
+//		for (int i = 0; i < arrayOfStudents.length; i++) {
+//			if (students[i] != null)
+//				arrayOfStudents[i] = students[i].getLastName() + " " + students[i].getName();
+//			else
+//				arrayOfStudents[i] = "";
+//		}
+//
+//		Arrays.sort(arrayOfStudents);
+//		for (int i = 0; i < arrayOfStudents.length; i++) {
+//			if (arrayOfStudents[i] != "") {
+//				listOfStudents += arrayOfStudents[i] + "\n";
+//			}
+//		}
+//
+//		return listOfStudents;
+//	}
 
-		for (int i = 0; i < arrayOfStudents.length; i++) {
-			if (students[i] != null)
-				arrayOfStudents[i] = students[i].getLastName() + " " + students[i].getName();
-			else
-				arrayOfStudents[i] = "";
-		}
+	// OLD Метод для проверки факта отсутствия эквивалентных студентов в группе:
+	
+//	public boolean checkStudentsSimilarity() {
+//		for (int i = 0; i < students.length; i++) {
+//			for (int j = i + 1; j < students.length; j++) {
+//				if (students[i] != null && students[j] != null) {
+//					if (students[i].equals(students[j])) {
+//						System.out.println("Похожий студент найден - " + students[i].getName() + " "
+//								+ students[i].getLastName() + " 🤔");
+//						return true;
+//
+//					}
+//				}
+//			}
+//		}
+//		System.out.println("Похожий студент не найден 👍");
+//		return false;
+//	}
 
-		Arrays.sort(arrayOfStudents);
-		for (int i = 0; i < arrayOfStudents.length; i++) {
-			if (arrayOfStudents[i] != "") {
-				listOfStudents += arrayOfStudents[i] + "\n";
-			}
-		}
-
-		return listOfStudents;
-	}
-
-	// Метод для проверки факта отсутствия эквивалентных студентов в группе
+	// NEW Метод для проверки факта отсутствия эквивалентных студентов в группе:
+	
 	public boolean checkStudentsSimilarity() {
-		for (int i = 0; i < students.length; i++) {
-			for (int j = i + 1; j < students.length; j++) {
-				if (students[i] != null && students[j] != null) {
-					if (students[i].equals(students[j])) {
-						System.out.println(
-								"Похожий студент найден - " + students[i].getName() + " " + students[i].getLastName() + " 🤔");
-						return true;
 
-					}
-				}
+		Set<Student> studentsSet = new HashSet<Student>();
+
+		for (Student student : students) {
+			if (!studentsSet.add(student)) {
+				System.out
+						.println("Похожий студент найден - " + student.getName() + " " + student.getLastName() + " 🤔");
+				return false;
 			}
 		}
-		System.out.println("Похожий студент не найден 👍");
-		return false;
+		System.out.println("Похожих студентов не найдено 👍");
+		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(students);
-		result = prime * result + Objects.hash(groupName);
-		return result;
+		return Objects.hash(groupName, students);
 	}
 
 	@Override
@@ -140,6 +225,19 @@ public class Group {
 		if (getClass() != obj.getClass())
 			return false;
 		Group other = (Group) obj;
-		return Objects.equals(groupName, other.groupName) && Arrays.equals(students, other.students);
+		return Objects.equals(groupName, other.groupName) && Objects.equals(students, other.students);
+	}
+
+	// NEW Метод вывода группы студентов:
+	
+	@Override
+	public String toString() {
+		sortStudentsByLastName();
+		StringBuilder studentsList = new StringBuilder("Информация о группе: " + groupName + '\n');
+
+		for (Student student : students) {
+			studentsList.append(student.toString());
+		}
+		return studentsList.toString();
 	}
 }
