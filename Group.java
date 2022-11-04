@@ -46,7 +46,7 @@ public class Group {
 
 	// OLD Метод добавления студента в группу. В случае добавления 11 студента
 	// должно быть возбужденно пользовательское исключение:
-	
+
 //	public void addStudent(Student student) throws GroupOverflowException {
 //
 //		for (int i = 0; i < students.length; i++) {
@@ -60,20 +60,22 @@ public class Group {
 
 	// NEW Метод добавления студента в группу. В случае добавления 11 студента
 	// должно быть возбужденно пользовательское исключение:
-	
+
 	public void addStudent(Student student) throws GroupOverflowException {
 
 		if (students.size() == 10) {
-			throw new GroupOverflowException("Current group is full!");
+			throw new GroupOverflowException("Текущая группа переполнена!");
 		} else {
 			student.setGroupName(groupName);
+//			System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
+//					+ " добавлен в группу " + student.getGroupName() + "!");
 			students.add(student);
 		}
 	}
 
 	// OLD Метод поиска студента в группе. Если студент не найден должно быть
 	// возбужденно пользовательское исключение:
-	
+
 //	public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
 //
 //		for (int j = 0; j < students.length; j++) {
@@ -88,7 +90,7 @@ public class Group {
 
 	// NEW Метод поиска студента в группе. Если студент не найден должно быть
 	// возбужденно пользовательское исключение:
-	
+
 	public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
 		Student foundStudent = null;
 
@@ -107,7 +109,7 @@ public class Group {
 
 	// OLD Метод удаления студента по номеру зачетки, вернуть true если такой
 	// студент был и он был удален и false в противном случае:
-	
+
 //	public boolean removeStudentById(int id) {
 //
 //		for (int k = 0; k < students.length; k++) {
@@ -125,7 +127,7 @@ public class Group {
 
 	// NEW Метод удаления студента по номеру зачетки, вернуть true если такой
 	// студент был и он был удален и false в противном случае:
-	
+
 	public boolean removeStudentById(int id) {
 
 		for (Student student : students) {
@@ -146,13 +148,13 @@ public class Group {
 //	}
 
 	// NEW Метод сортировки массива студентов по фамилии:
-	
+
 	public void sortStudentsByLastName() {
 		Collections.sort(students, Comparator.comparing(Human::getLastName));
 	}
 
 	// OLD Метод вывода группы студентов:
-	
+
 //	@Override	
 //	public String toString() {
 //		String listOfStudents = "";
@@ -176,7 +178,7 @@ public class Group {
 //	}
 
 	// OLD Метод для проверки факта отсутствия эквивалентных студентов в группе:
-	
+
 //	public boolean checkStudentsSimilarity() {
 //		for (int i = 0; i < students.length; i++) {
 //			for (int j = i + 1; j < students.length; j++) {
@@ -195,7 +197,7 @@ public class Group {
 //	}
 
 	// NEW Метод для проверки факта отсутствия эквивалентных студентов в группе:
-	
+
 	public boolean checkStudentsSimilarity() {
 
 		Set<Student> studentsSet = new HashSet<Student>();
@@ -229,7 +231,7 @@ public class Group {
 	}
 
 	// NEW Метод вывода группы студентов:
-	
+
 	@Override
 	public String toString() {
 		sortStudentsByLastName();
