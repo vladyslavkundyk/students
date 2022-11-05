@@ -4,9 +4,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-//		Scanner sc = new Scanner(System.in);
-//		Random rannum = new Random();
-
 		Student student1 = new Student("Алексей", "Дмитров", Gender.Male, 0, "");
 		Student student2 = new Student("Степан", "Баранов", Gender.Male, 0, "");
 		Student student3 = new Student("Олег", "Волынов", Gender.Male, 0, "");
@@ -53,8 +50,7 @@ public class Main {
 		group1.removeStudentById(3);
 		group1.removeStudentById(491); // Не существует
 
-		// (ВНИЗУ) sortStudentsByLastName, создание студента
-
+		// SortStudentsByLastName, создание студента
 //		System.out.println();
 //		System.out.println("Создание нового студента:");
 //		System.out.println();
@@ -81,8 +77,8 @@ public class Main {
 		GroupFileStorage gfs = new GroupFileStorage();
 		gfs.saveGroupToCSV(group1);
 		System.out.println();
-//
-//		// Поиск файла в рабочем каталоге
+		
+		// Поиск файла в рабочем каталоге
 //		File groupsFolder = new File("D:\\Группы студентов");
 //		String groupToSearch = ("Основная");
 //		File searchGroup = gfs.findFileByGroupName(groupToSearch, groupsFolder);
@@ -93,7 +89,7 @@ public class Main {
 //			System.out.println("Группы " + groupToSearch + " не существует!");
 //		}
 //
-//		// Вычитка и возврат группы из файла
+		// Вычитка и возврат группы из файла
 //		String groupToLoad = "Основная";
 //		File groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
 //		Group tempGroup = new Group("");
@@ -105,7 +101,7 @@ public class Main {
 //			b.printStackTrace();
 //		}
 //
-//		// Вычитка и возврат другой группы из файла
+		// Вычитка и возврат другой группы из файла
 //		groupToLoad = "Дополнительная";
 //		groupsDirectory = new File("D:\\Группы студентов\\" + groupToLoad + ".csv");
 //		try {
@@ -143,7 +139,6 @@ public class Main {
 		try {
 			group1.addStudent(student8);
 		} catch (GroupOverflowException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
