@@ -47,7 +47,7 @@ public class Main {
 		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
 
-		group1.removeStudentById(3);
+		group1.removeStudentById(group1.getStudents().size()); // Удалить последнего студента
 		group1.removeStudentById(491); // Не существует
 
 		// SortStudentsByLastName, создание студента
