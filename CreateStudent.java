@@ -31,12 +31,12 @@ public class CreateStudent {
 			System.out.println("");
 		}
 
-		student.setId(rannum.nextInt(200, 500));
-		System.out.println("Номер зачётки студента " + student.getId() + " сгенерирован!");
-		System.out.println("");
+//		student.setId(rannum.nextInt(200, 500));
+//		System.out.println("Номер зачётки студента " + student.getId() + " сгенерирован!");
+//		System.out.println("");
 
-		System.out.println("Введите название группы студента (String) >");
-		student.setGroupName(sc.nextLine());
+//		System.out.println("Введите название группы студента (String) >");
+//		student.setGroupName(sc.nextLine());
 
 		return student;
 	}
@@ -47,7 +47,7 @@ public class CreateStudent {
 			group.addStudent(student);
 		} catch (GroupOverflowException e) {
 			System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
-					+ " не добавлен,\nгруппа " + student.getGroupName() + " переполнена :(");
+					+ " не добавлен,\nтекущая группа переполнена :(");
 		}
 	}
 }

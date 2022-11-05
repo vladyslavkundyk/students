@@ -64,9 +64,10 @@ public class Group {
 	public void addStudent(Student student) throws GroupOverflowException {
 
 		if (students.size() == 10) {
-			throw new GroupOverflowException("Текущая группа переполнена!");
+			throw new GroupOverflowException("Студент " + student.getLastName() + " не добавлен,\nгруппа переполнена!");
 		} else {
 			student.setGroupName(groupName);
+			student.setId(students.size()+1);
 //			System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
 //					+ " добавлен в группу " + student.getGroupName() + "!");
 			students.add(student);

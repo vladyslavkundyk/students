@@ -7,20 +7,15 @@ public class Main {
 //		Scanner sc = new Scanner(System.in);
 //		Random rannum = new Random();
 
-		Student student1 = new Student("Алексей", "Дмитров", Gender.Male, 563, "Основная");
-		Student student2 = new Student("Степан", "Баранов", Gender.Male, 623, "Основная");
-		Student student3 = new Student("Олег", "Волынов", Gender.Male, 924, "Основная");
-		Student student4 = new Student("Борис", "Пугачев", Gender.Male, 427, "Основная");
-		Student student5 = new Student("Богдан", "Митрофанов", Gender.Male, 746, "Основная");
-		Student student6 = new Student("Андрей", "Антонов", Gender.Male, 315, "Основная");
-		Student student7 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
-		Student student8 = new Student("Анастасия", "Сорокина", Gender.Female, 916, "Основная");
-		Student student9 = new Student("Зоя", "Гришина", Gender.Female, 257, "Основная");
-
-//		Student student15 = new Student("Тамара", "Орлова", Gender.Female, 10, "Дополнительная");
-		Student student11 = new Student("Юрий", "Гришин", Gender.Male, 11, "Основная");
-
-		Student student20 = new Student("Марина", "Леонова", Gender.Female, 258, "Основная");
+		Student student1 = new Student("Алексей", "Дмитров", Gender.Male, 0, "");
+		Student student2 = new Student("Степан", "Баранов", Gender.Male, 0, "");
+		Student student3 = new Student("Олег", "Волынов", Gender.Male, 0, "");
+		Student student4 = new Student("Борис", "Пугачев", Gender.Male, 0, "");
+		Student student5 = new Student("Богдан", "Митрофанов", Gender.Male, 0, "");
+		Student student6 = new Student("Андрей", "Антонов", Gender.Male, 0, "");
+		Student student7 = new Student("Марина", "Леонова", Gender.Female, 0, "");
+		
+		Student student8 = new Student("Марина", "Леонова", Gender.Female, 0, "");
 
 		Group group1 = new Group("Основная");
 
@@ -30,13 +25,9 @@ public class Main {
 			group1.addStudent(student3);
 			group1.addStudent(student4);
 			group1.addStudent(student5);
-			group1.addStudent(student6);
+//			group1.addStudent(student6);
 			group1.addStudent(student7);
 			group1.addStudent(student8);
-			group1.addStudent(student9);
-
-//			group2.addStudent(student15);
-//			group1.addStudent(student11);
 
 		} catch (GroupOverflowException e) {
 			System.out.println();
@@ -49,7 +40,7 @@ public class Main {
 
 		try {
 			System.out.println(group1.searchStudentByLastName("Леонова"));
-			System.out.println(group1.searchStudentByLastName(student11.getLastName())); // Не существует
+			System.out.println(group1.searchStudentByLastName(student6.getLastName())); // Не существует
 			System.out.println();
 
 		} catch (StudentNotFoundException e) {
@@ -59,7 +50,7 @@ public class Main {
 		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
 
-		group1.removeStudentById(746);
+		group1.removeStudentById(3);
 		group1.removeStudentById(491); // Не существует
 
 		// (ВНИЗУ) sortStudentsByLastName, создание студента
@@ -67,13 +58,13 @@ public class Main {
 //		System.out.println();
 //		System.out.println("Создание нового студента:");
 //		System.out.println();
-//		Student student10 = new CreateStudent().newStudent();
-//		CreateStudent.addStudentToGroup(student10, group1);
-
+//		Student student30 = new CreateStudent().newStudent();
+//		CreateStudent.addStudentToGroup(student30, group1);
+//
 //		System.out.println();
 //		System.out.println("Информация о созданном студенте:");
 //		System.out.println();
-//		System.out.println(student10);
+//		System.out.println(student30);
 
 		System.out.println("+---+---+---+---+---+---+---+");
 		System.out.println();
@@ -150,7 +141,7 @@ public class Main {
 		System.out.println();
 
 		try {
-			group1.addStudent(student20);
+			group1.addStudent(student8);
 		} catch (GroupOverflowException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
