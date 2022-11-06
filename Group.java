@@ -63,15 +63,13 @@ public class Group {
 
 	public void addStudent(Student student) throws GroupOverflowException {
 
-		if (students.size() == 10) {
-			throw new GroupOverflowException("Студент " + student.getLastName() + " не добавлен,\nгруппа переполнена!");
-		} else {
-			student.setGroupName(groupName);
-			student.setId(students.size()+1);
-//			System.out.println(student.gender.getFilePermissions() + student.getName() + " " + student.getLastName()
-//					+ " добавлен в группу " + student.getGroupName() + "!");
+		if (students.size() < 10) {
 			students.add(student);
+			student.setGroupName(this.groupName);
+			student.setId(students.size());
+			return;
 		}
+		throw new GroupOverflowException("Студент " + student.getLastName() + " не добавлен,\nгруппа переполнена!");
 	}
 
 	// OLD Метод поиска студента в группе. Если студент не найден должно быть
@@ -93,19 +91,19 @@ public class Group {
 	// возбужденно пользовательское исключение:
 
 	public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
-		Student foundStudent = null;
+		Student tempStudent = null;
 
 		for (Student student : students) {
 			if (student.getLastName().equals(lastName)) {
-				foundStudent = student;
+				tempStudent = student;
 			}
 		}
-		if (foundStudent == null) {
+		if (tempStudent == null) {
 			throw new StudentNotFoundException(
 					"Студент по фамилии " + lastName + " не найден,\nили он ещё не добавлен в группу :(\n");
 		}
 		System.out.println("Студент по фамилии найден! Это:");
-		return foundStudent;
+		return tempStudent;
 	}
 
 	// OLD Метод удаления студента по номеру зачетки, вернуть true если такой
@@ -199,19 +197,37 @@ public class Group {
 
 	// NEW Метод для проверки факта отсутствия эквивалентных студентов в группе:
 
+//	public boolean checkStudentsSimilarity() {
+//		for (int i = 0; i < students.size() - 1; i++) {
+//			for (int j = i + 1; j < students.size(); j++) {
+//				if (students.get(i).getLastName() != null
+//						&& students.get(i).getLastName().equals(students.get(j).getLastName())) {
+//
+//					System.out.println("Похожий студент найден - " + students.get(i).getName() + " "
+//							+ students.get(i).getLastName() + " 🤔");
+//					return true;
+//				}
+//			}
+//		}
+//		System.out.println("Похожих студентов не найдено 👍");
+//		return false;
+//	}
+
 	public boolean checkStudentsSimilarity() {
+		for (int i = 0; i < students.size() - 1; i++) {
+			for (int j = i + 1; j < students.size(); j++) {
+				if (students.get(i).getLastName() != null && students.get(i).getName() != null
+						&& students.get(i).getLastName().equals(students.get(j).getLastName())
+						&& students.get(i).getName().equals(students.get(j).getName())) {
 
-		Set<Student> studentsSet = new HashSet<Student>();
-
-		for (Student student : students) {
-			if (!studentsSet.add(student)) {
-				System.out
-						.println("Похожий студент найден - " + student.getName() + " " + student.getLastName() + " 🤔");
-				return false;
+					System.out.println("Похожий студент найден - " + students.get(i).getName() + " "
+							+ students.get(i).getLastName() + " 🤔");
+					return true;
+				}
 			}
 		}
 		System.out.println("Похожих студентов не найдено 👍");
-		return true;
+		return false;
 	}
 
 	@Override

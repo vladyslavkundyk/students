@@ -9,10 +9,10 @@ public class Main {
 		Student student3 = new Student("Олег", "Волынов", Gender.Male, 0, "");
 		Student student4 = new Student("Борис", "Пугачев", Gender.Male, 0, "");
 		Student student5 = new Student("Богдан", "Митрофанов", Gender.Male, 0, "");
-		Student student6 = new Student("Андрей", "Антонов", Gender.Male, 0, "");
-		Student student7 = new Student("Марина", "Леонова", Gender.Female, 0, "");
+		Student student6 = new Student("Марина", "Леонова", Gender.Female, 0, "");
+		Student student7 = new Student("Андрей", "Антонов", Gender.Male, 0, "");
 		
-		Student student8 = new Student("Марина", "Леонова", Gender.Female, 0, "");
+		Student student10 = new Student("Марина", "Леонова", Gender.Female, 0, "");
 
 		Group group1 = new Group("Основная");
 
@@ -21,10 +21,9 @@ public class Main {
 			group1.addStudent(student2);
 			group1.addStudent(student3);
 			group1.addStudent(student4);
-			group1.addStudent(student5);
-//			group1.addStudent(student6);
+//			group1.addStudent(student5);
+			group1.addStudent(student6);
 			group1.addStudent(student7);
-			group1.addStudent(student8);
 
 		} catch (GroupOverflowException e) {
 			System.out.println();
@@ -37,7 +36,7 @@ public class Main {
 
 		try {
 			System.out.println(group1.searchStudentByLastName("Леонова"));
-			System.out.println(group1.searchStudentByLastName(student6.getLastName())); // Не существует
+			System.out.println(group1.searchStudentByLastName(student5.getLastName())); // Не существует
 			System.out.println();
 
 		} catch (StudentNotFoundException e) {
@@ -137,7 +136,7 @@ public class Main {
 		System.out.println();
 
 		try {
-			group1.addStudent(student8);
+			group1.addStudent(student10);
 		} catch (GroupOverflowException e) {
 			e.printStackTrace();
 		}
