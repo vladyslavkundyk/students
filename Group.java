@@ -152,30 +152,6 @@ public class Group {
 		Collections.sort(students, Comparator.comparing(Human::getLastName));
 	}
 
-	// OLD Метод вывода группы студентов:
-
-//	@Override	
-//	public String toString() {
-//		String listOfStudents = "";
-//		String[] arrayOfStudents = new String[10];
-//
-//		for (int i = 0; i < arrayOfStudents.length; i++) {
-//			if (students[i] != null)
-//				arrayOfStudents[i] = students[i].getLastName() + " " + students[i].getName();
-//			else
-//				arrayOfStudents[i] = "";
-//		}
-//
-//		Arrays.sort(arrayOfStudents);
-//		for (int i = 0; i < arrayOfStudents.length; i++) {
-//			if (arrayOfStudents[i] != "") {
-//				listOfStudents += arrayOfStudents[i] + "\n";
-//			}
-//		}
-//
-//		return listOfStudents;
-//	}
-
 	// OLD Метод для проверки факта отсутствия эквивалентных студентов в группе:
 
 //	public boolean checkStudentsSimilarity() {
@@ -196,22 +172,6 @@ public class Group {
 //	}
 
 	// NEW Метод для проверки факта отсутствия эквивалентных студентов в группе:
-
-//	public boolean checkStudentsSimilarity() {
-//		for (int i = 0; i < students.size() - 1; i++) {
-//			for (int j = i + 1; j < students.size(); j++) {
-//				if (students.get(i).getLastName() != null
-//						&& students.get(i).getLastName().equals(students.get(j).getLastName())) {
-//
-//					System.out.println("Похожий студент найден - " + students.get(i).getName() + " "
-//							+ students.get(i).getLastName() + " 🤔");
-//					return true;
-//				}
-//			}
-//		}
-//		System.out.println("Похожих студентов не найдено 👍");
-//		return false;
-//	}
 
 	public boolean checkStudentsSimilarity() {
 		for (int i = 0; i < students.size() - 1; i++) {
@@ -246,6 +206,30 @@ public class Group {
 		Group other = (Group) obj;
 		return Objects.equals(groupName, other.groupName) && Objects.equals(students, other.students);
 	}
+
+	// OLD Метод вывода группы студентов:
+
+//	@Override	
+//	public String toString() {
+//		String listOfStudents = "";
+//		String[] arrayOfStudents = new String[10];
+//
+//		for (int i = 0; i < arrayOfStudents.length; i++) {
+//			if (students[i] != null)
+//				arrayOfStudents[i] = students[i].getLastName() + " " + students[i].getName();
+//			else
+//				arrayOfStudents[i] = "";
+//		}
+//
+//		Arrays.sort(arrayOfStudents);
+//		for (int i = 0; i < arrayOfStudents.length; i++) {
+//			if (arrayOfStudents[i] != "") {
+//				listOfStudents += arrayOfStudents[i] + "\n";
+//			}
+//		}
+//
+//		return listOfStudents;
+//	}
 
 	// NEW Метод вывода группы студентов:
 
