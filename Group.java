@@ -177,6 +177,7 @@ public class Group {
 		for (int i = 0; i < students.size() - 1; i++) {
 			for (int j = i + 1; j < students.size(); j++) {
 				if (students.get(i).getLastName() != null && students.get(i).getName() != null
+						&& students.get(j).getLastName() != null && students.get(j).getName() != null
 						&& students.get(i).getLastName().equals(students.get(j).getLastName())
 						&& students.get(i).getName().equals(students.get(j).getName())) {
 
